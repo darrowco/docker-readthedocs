@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM debian:buster-slim
 LABEL maintainer='\
 Florian "floross" Rossiaud <o>, \
 Simon "svvac" Wachter <himself@swordofpain.net>, \
@@ -12,8 +12,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
     VIRTUAL_ENV=/venv \
     PATH=/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
     PYTHON=/venv/bin/python \
-    PIP="/venv/bin/pip --disable-pip-version-check" \
-    RTD_REF=2.5.0
+    PIP="/venv/bin/pip3 --disable-pip-version-check" \
+    RTD_REF=3.6.1
 
 
 # Set locale to UTF-8
@@ -25,14 +25,14 @@ RUN apt-get -qq update && \
 # Install basic dependencies
 RUN apt-get -qq update && \
     apt-get install -qq --no-install-recommends \
-        python-setuptools build-essential python-dev python-pip git libevent-dev \
+        python-setuptools build-essential python-dev python3-pip git libevent-dev \
         libxml2-dev libxslt1-dev gettext texlive texlive-latex-extra \
         wget \
         nginx && \
     rm -rf /var/lib/apt/lists/*
 
 # Install test dependencies
-RUN pip install wheel && pip install \
+RUN pip3 install wheel && pip3 install \
     virtualenv \
     supervisor
 
