@@ -49,7 +49,7 @@ WORKDIR $APPDIR
 
 ## Extract readthedocs
 RUN wget -q --no-check-certificate -O - \
-        https://github.com/rtfd/readthedocs.org/archive/${RTD_REF}.tar.gz | \
+        https://github.com/darrowco/readthedocs.org/archive/${RTD_REF}.tar.gz | \
         tar -xzf - --strip-components 1 && \
     $PIP install -U -r $APPDIR/requirements/deploy.txt && \
     $PIP install elasticsearch==1.7.0 && \
